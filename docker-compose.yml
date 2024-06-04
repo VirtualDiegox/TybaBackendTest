@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+  api-rest-app:
+    build: .
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mysql
+    environment:
+      DB_HOST: mysql
+      DB_USER: root
+      DB_PASSWORD: password
+      DB_NAME: API_REST_Tyba
+
+  mysql:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: API_REST_Tyba
+    ports:
+      - "33061:3306"
+    volumes:
+      - ./mysql-init:/docker-entrypoint-initdb.d
+
