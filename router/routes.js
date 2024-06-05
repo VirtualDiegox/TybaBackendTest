@@ -11,6 +11,7 @@ const router = express.Router();
 
 router.get('/login', Login);
 router.post('/register', Register);
+//Protected routes that need authentication
 router.get('/logout', auth, Logout);
 router.get('/restaurants', auth, CheckNearbyRestaurants);
 router.get('/record', auth, MovementsRecord);

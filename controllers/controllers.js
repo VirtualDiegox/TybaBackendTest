@@ -26,7 +26,7 @@ const Register = async (req, res, next) => {
             let message = 'User registered successfully!'
             //Record action
             await db.query('INSERT INTO movements (username, date, action) VALUES (?, ?, ?)', [username, new Date(), "Register"]);
-            return res.status(200).json({status: message});
+            return res.status(201).json({status: message});
         } catch (err) {
             res.status(500).send(err.message)
         }
@@ -68,7 +68,7 @@ const Login = async (req, res, next) => {
             
             await db.query('INSERT INTO movements (username, date, action) VALUES (?, ?, ?)', [username, new Date(), "Login"]);
 
-            let message = 'User loggen in successfully!'
+            let message = 'User logged in successfully!'
             return res.status(200).json({status: message, token: token});
         } catch (err) {
             res.status(500).send(err.message)
